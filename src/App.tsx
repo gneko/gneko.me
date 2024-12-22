@@ -63,7 +63,7 @@ const ShowData = {
     { platform: 'weibo', icon: IconBrandWeibo, href: 'https://weibo.com' },
   ],
   navigation: [
-    { key: 'photos', i18nKey: 'photos', href: 'https://photos.gneko.me' },
+    { key: 'photo', i18nKey: 'photo', href: 'https://photo.gneko.me' },
     { key: 'blog', i18nKey: 'blog', href: 'https://blog.gneko.me' },
   ],
   copyright: '2019-2024 © gneko.me'
