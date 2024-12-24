@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import i18n from 'i18next';
 import { useTranslation, initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { IconBrandGithub, IconBrandWeibo, IconLanguage, IconUser } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandWeibo, IconLanguage, IconUser, IconBrandXFilled } from '@tabler/icons-react';
 
 const theme = createTheme({
   fontFamily: 'Space Grotesk, sans-serif, Noto Sans SC, sans-serif',
@@ -61,6 +61,7 @@ const ShowData = {
   },
   socials: [
     { platform: 'github', icon: IconBrandGithub, href: 'https://github.com/gneko' },
+    { platform: 'twitter', icon: IconBrandXFilled, href: 'https://x.com/grauneko' },
     { platform: 'weibo', icon: IconBrandWeibo, href: 'https://weibo.com' },
   ],
   navigation: [
@@ -121,8 +122,7 @@ export default function App() {
                 <ActionIcon
                   variant="subtle"
                   onClick={toggleLanguage}
-                  size="md"
-                >
+                  size="lg">
                   <IconLanguage size={20} />
                 </ActionIcon>
               </Group>
