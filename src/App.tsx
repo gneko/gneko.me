@@ -99,7 +99,9 @@ export default function App() {
     <MantineProvider theme={theme}>
       <Box
         style={{
-          minHeight: '100vh',
+          minHeight: '100svh',
+          height: '100dvh',
+          maxHeight: '100vh',
           background: backgroundGradient,
           position: 'relative',
         }}
