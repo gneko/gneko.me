@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 import "@fontsource/space-grotesk/400.css";
 import "@fontsource/space-grotesk/700.css";
-import { MantineProvider, createTheme, Container, Text, Button, Group, ActionIcon, Stack, Box, rem, Avatar } from "@mantine/core";
+import { MantineProvider, createTheme, Container, Text, Button, Group, ActionIcon, Stack, Box, rem, Avatar, Paper } from "@mantine/core";
 import { motion } from 'framer-motion';
 import i18n from 'i18next';
 import { useTranslation, initReactI18next } from 'react-i18next';
@@ -28,8 +28,9 @@ const theme = createTheme({
   primaryShade: 2,
   primaryColor: 'myColor',
 });
-
-const backgroundGradient = 'linear-gradient(60deg, #29323c 0%, #485563 100%)';
+// background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+const backgroundGradient = 'linear-gradient(to right, #868f96 0%, #596164 100%)';
+const boxBackgroundGradient = 'linear-gradient(60deg, #29323c 0%, #485563 100%)';
 
 const ShowData = {
   i18n: {
@@ -104,90 +105,99 @@ export default function App() {
         }}
       >
         <Container size="xs" pt={50}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Group justify="flex-end" mb={30}>
-              <ActionIcon
-                variant="subtle"
-                onClick={toggleLanguage}
-                size="md"
-              >
-                <IconLanguage size={20} />
-              </ActionIcon>
-            </Group>
-
-            <Stack align="center">
-              <motion.div
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Avatar
-                  mb={40}
-                  size={ShowData.avatar.size}
+          <Paper p="xl" radius="md"
+            style={{
+              position: 'relative',
+              background: boxBackgroundGradient,
+            }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Group justify="flex-end" mb={30}>
+                <ActionIcon
+                  variant="subtle"
+                  onClick={toggleLanguage}
+                  size="md"
                 >
-                  {
-                    ShowData.avatar.src && (
-                      <img
-                        src={ShowData.avatar.src}
-                        alt={ShowData.avatar.alt}
-                        height={ShowData.avatar.size}
-                        width={ShowData.avatar.size}
-                      />
-                    ) || (
-                      <IconUser size={ShowData.avatar.size}/>
-                    )
-                  }
-                </Avatar>
-                <Text fw={700} size="xl" ta="center" c="white">
-                  {t(ShowData.name.i18nKey)}
-                </Text>
-              </motion.div>
-
-              <Group gap={16}>
-                {ShowData.socials.map((social) => (
-                  <motion.div
-                    key={social.platform}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ActionIcon
-                      variant="subtle"
-                      size="xl"
-                      radius="xl"
-                      component="a"
-                      href={social.href}
-                    >
-                      <social.icon />
-                    </ActionIcon>
-                  </motion.div>
-                ))}
+                  <IconLanguage size={20} />
+                </ActionIcon>
               </Group>
 
-              <Group gap={16}>
-                {ShowData.navigation.map((item) => (
-                  <motion.div
-                    key={item.key}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+              <Stack align="center">
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Avatar
+                    mb={40}
+                    size={ShowData.avatar.size}
                   >
-                    <Button
-                      component="a"
-                      href={item.href}
-                      variant="subtle"
-                      color="gray"
-                      size="sm"
+                    {
+                      ShowData.avatar.src && (
+                        <img
+                          src={ShowData.avatar.src}
+                          alt={ShowData.avatar.alt}
+                          height={ShowData.avatar.size}
+                          width={ShowData.avatar.size}
+                        />
+                      ) || (
+                        <IconUser size={ShowData.avatar.size} />
+                      )
+                    }
+                  </Avatar>
+                  <Text fw={700} size="xl" ta="center" c="white">
+                    {t(ShowData.name.i18nKey)}
+                  </Text>
+                </motion.div>
+
+                <Group gap={16}>
+                  {ShowData.socials.map((social) => (
+                    <motion.div
+                      key={social.platform}
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      {t(item.i18nKey)}
-                    </Button>
-                  </motion.div>
-                ))}
-              </Group>
-            </Stack>
-          </motion.div>
+                      <ActionIcon
+                        variant="subtle"
+                        size="xl"
+                        radius="xl"
+                        component="a"
+                        href={social.href}
+                      >
+                        <social.icon />
+                      </ActionIcon>
+                    </motion.div>
+                  ))}
+                </Group>
+
+                <Group gap={16}>
+                  {ShowData.navigation.map((item) => (
+                    <motion.div
+                      key={item.key}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button
+                        component="a"
+                        href={item.href}
+                        variant="subtle"
+                        color="gray"
+                        size="sm"
+                      >
+                        {t(item.i18nKey)}
+                      </Button>
+                    </motion.div>
+                  ))}
+                </Group>
+              </Stack>
+            </motion.div>
+          </Paper>
         </Container>
 
         <Text
